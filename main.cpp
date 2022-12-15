@@ -21,7 +21,7 @@ std::vector<char> to2(int number) {   // перевод в 2-ную
     return bitNumber;
 }
 
-int to10(std::vector<char> number) {   // перевод из 2-ной
+int to10(std::vector<char> number) {   // перевод из 2-ной в 10ую с.ч.
     int tenNumber = 0;
     for (int i = 0; i < 6; i++) {
         tenNumber += ((int) number[i]) * pow(2, i);
@@ -40,13 +40,11 @@ void writeNum(unsigned __int16 &numbers, std::vector<char> bitNumber,
 
 int readNum(unsigned __int16 &numbers, int index) {
     std::vector<char> bitNimbers;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++)
         if (numbers & (1 << (6 * index + i)))
             bitNimbers.push_back(1);
         else
             bitNimbers.push_back(0);
-
-    }
     int result = to10(bitNimbers);
     return result;
 }
@@ -56,11 +54,11 @@ int main() {  // макс размер памяти занимаемый чис�
     unsigned __int16 saveNumbers;
 
     for (int i = 0; i < 2; i++) {
-        std::cin >> number;
+        std::cin >> number;   // вводиться 2 числа
         writeNum(saveNumbers, to2(number), i);
     }
     for (int i = 0; i < 2; i++) {
-        std::cout << readNum(saveNumbers, i) << std::endl;
+        std::cout << readNum(saveNumbers, i) << std::endl; // выводитсья 2 числа в том порядке, в котором были записаны
     }
 
     return 0;
